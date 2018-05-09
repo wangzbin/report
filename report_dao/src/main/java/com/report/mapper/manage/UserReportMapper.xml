@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.report.mapper.manage.UserReportMapper">
+
+    <resultMap type="com.report.common.pojo.UserReport" id="userReportMap">
+        <id property="reportId" column="report_id"/>
+        <result property="reportTubeId" column="report_tube_id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="sex" column="sex"/>
+        <result property="phone" column="phone"/>
+        <result property="reportStatus" column="report_status"/>
+        <result property="reportCreateTime" column="report_create_time"/>
+
+        <association property="bacterialReport" resultMap="com.report.mapper.manage.BacterialReportMapper.bacterialReport"/> <!-- 1对1映射 -->
+
+    </resultMap>
+
+    <!-- 判断数据实体的值，null?不增加这个字段:增加这个字段，所以if条件中写实体属性key，if结果写字段名 -->
+    <sql id="key">
+        <!-- trim suffixOverrides 去掉最后一个,号 -->
+        <trim suffixOverrides=",">
+            <if test="reportId!=null">
+                report_id,
+            </if>
+            <if test="reportTubeId!=null">
+                report_tube_id,
+            </if>
+            <if test="name!=null">
+                name,
+            </if>
+            <if test="age!=null">
+                age,
+            </if>
+            <if test="sex!=null">
+                sex,
+            </if>
+            <if test="phone!=null">
+                phone,
+            </if>
+            <if test="reportStatus!=null">
+                report_status,
+            </if>
+            <if test="reportCreateTime!=null">
+                report_create_time,
+            </if>
+
+            <if test="bacterialReport!=null">
+                report_bacterial_id,
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 判断数据是否为空，不为空填上实体数据做为value -->
+    <sql id="value">
+        <trim suffixOverrides=",">
+            <if test="reportId!=null">
+                #{reportId},
+            </if>
+            <if test="reportTubeId!=null">
+                #{reportTubeId},
+            </if>
+            <if test="name!=null">
+                #{name},
+            </if>
+            <if test="age!=null">
+                #{age},
+            </if>
+            <if test="sex!=null">
+                #{sex},
+            </if>
+            <if test="phone!=null">
+                #{phone},
+            </if>
+            <if test="reportStatus!=null">
+                #{reportStatus},
+            </if>
+            <if test="reportCreateTime!=null">
+                #{reportCreateTime},
+            </if>
+
+            <if test="bacterialReport!=null">
+                #{bacterialReport.bacterialId},
+            </if>
+        </trim>
+    </sql>
+
+    <insert id="addUserReport" parameterType="com.report.common.pojo.UserReport">
+        insert into t_xcs_user_report(<include refid="key"/>) values(<include refid="value"/>)
+    </insert>
+
+    <select id="selectUserReportData" resultMap="userReportMap">
+         SELECT * FROM t_xcs_user_report b,t_xcs_bacterial_report a WHERE a.bacterial_id=#{reportId} AND b.report_bacterial_id=#{reportId};
+    </select>
+
+    <select id="selectUserReport" resultType="UserReport">
+        SELECT * FROM t_xcs_user_report WHERE report_tube_id=#{reportTubeId};
+    </select>
+</mapper>

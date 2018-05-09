@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.report.mapper.manage.BacterialReportMapper">
+    <!-- 配置实体与表的映射 -->
+    <resultMap type="com.report.common.pojo.BacterialReport" id="bacterialReport">
+        <id property="bacterialId" column="bacterial_id"/>
+        <result property="bacteroidesUniformis" column="bacteroides_uniformis"/>
+        <result property="lactobacillusSalivarius" column="lactobacillus_salivarius"/>
+        <result property="lactobacillusAcidophilus" column="lactobacillus_acidophilus"/>
+        <result property="lactobacillusFermentum" column="lactobacillus_fermentum"/>
+        <result property="streptococcusThermophilus" column="streptococcus_thermophilus"/>
+        <result property="lactobacillusHelveticus" column="lactobacillus_helveticus"/>
+        <result property="faecalibacteriumPrausnitzii" column="faecalibacterium_prausnitzii"/>
+        <result property="lactobacillusJohnsonii" column="lactobacillus_johnsonii"/>
+        <result property="lactobacillusCasei" column="lactobacillus_casei"/>
+        <result property="roseburiaInulinivorans" column="roseburia_inulinivorans"/>
+        <result property="lactococcusLactis" column="lactococcus_lactis"/>
+        <result property="lactobacillusReuteri" column="lactobacillus_reuteri"/>
+        <result property="clostridiumButyricum" column="clostridium_butyricum"/>
+        <result property="bifidobacteriumAdolescentis" column="bifidobacterium_adolescentis"/>
+        <result property="bifidobacteriumBifidum" column="bifidobacterium_bifidum"/>
+        <result property="bifidobacteriumAngulatum" column="bifidobacterium_angulatum"/>
+        <!--有害菌-->
+        <result property="salmonellaEnterica" column="salmonella_enterica"/>
+        <result property="campylobacterJejuni" column="campylobacter_jejuni"/>
+        <result property="clostridiumPerfringens" column="clostridium_perfringens"/>
+        <result property="klebsiellaPneumoniae" column="klebsiella_pneumoniae"/>
+        <result property="bacteroidesFragilis" column="bacteroides_fragilis"/>
+        <result property="enterobacterAerogenes" column="enterobacter_aerogenes"/>
+        <!--中性菌-->
+
+        <result property="bacteroidesStercoris" column="bacteroides_stercoris"/>
+        <result property="escherichiaColi" column="escherichia_coli"/>
+        <result property="staphylococcusAureus" column="staphylococcus_aureus"/>
+
+        <result property="enterococcusFaecium" column="enterococcus_faecium"/>
+        <result property="enterococcusFaecalis" column="enterococcus_faecalis"/>
+        <result property="veillonellaParvula" column="veillonella_parvula"/>
+
+        <result property="streptococcusSuis" column="streptococcus_suis"/>
+        <result property="streptococcusAnginosus" column="streptococcus_anginosus"/>
+        <result property="fusobacteriumNucleatum" column="fusobacterium_nucleatum"/>
+
+    </resultMap>
+
+    <!-- 判断数据实体的值，null?不增加这个字段:增加这个字段，所以if条件中写实体属性key，if结果写字段名 -->
+    <sql id="key">
+        <!-- trim suffixOverrides 去掉最后一个,号 -->
+        <trim suffixOverrides=",">
+            <if test="bacterialId!=null">
+                bacterial_id,
+            </if>
+            <if test="bacteroidesUniformis!=null">
+                bacteroides_uniformis,
+            </if>
+
+            <if test="lactobacillusSalivarius!=null">
+                lactobacillus_salivarius,
+            </if>
+            <if test="lactobacillusAcidophilus!=null">
+                lactobacillus_acidophilus,
+            </if>
+            <if test="lactobacillusFermentum!=null">
+                lactobacillus_fermentum,
+            </if>
+            <if test="streptococcusThermophilus!=null">
+                streptococcus_thermophilus,
+            </if>
+            <if test="lactobacillusHelveticus!=null">
+                lactobacillus_helveticus,
+            </if>
+            <if test="faecalibacteriumPrausnitzii!=null">
+                faecalibacterium_prausnitzii,
+            </if>
+            <if test="lactobacillusJohnsonii!=null">
+                lactobacillus_johnsonii,
+            </if>
+            <if test="lactobacillusCasei!=null">
+                lactobacillus_casei,
+            </if>
+            <if test="roseburiaInulinivorans!=null">
+                roseburia_inulinivorans,
+            </if>
+            <if test="lactococcusLactis!=null">
+                lactococcus_lactis,
+            </if>
+            <if test="lactobacillusReuteri!=null">
+                lactobacillus_reuteri,
+            </if>
+            <if test="clostridiumButyricum!=null">
+                clostridium_butyricum,
+            </if>
+            <if test="bifidobacteriumAdolescentis!=null">
+                bifidobacterium_adolescentis,
+            </if>
+            <if test="bifidobacteriumBifidum!=null">
+                bifidobacterium_bifidum,
+            </if>
+            <if test="bifidobacteriumAngulatum!=null">
+                bifidobacterium_angulatum,
+            </if>
+
+            <!-- 有害菌 -->
+
+            <if test="salmonellaEnterica!=null">
+                salmonella_enterica,
+            </if>
+            <if test="campylobacterJejuni!=null">
+                campylobacter_jejuni,
+            </if>
+            <if test="clostridiumPerfringens!=null">
+                clostridium_perfringens,
+            </if>
+            <if test="klebsiellaPneumoniae!=null">
+                klebsiella_pneumoniae,
+            </if>
+            <if test="bacteroidesFragilis!=null">
+                bacteroides_fragilis,
+            </if>
+            <if test="enterobacterAerogenes!=null">
+                enterobacter_aerogenes,
+            </if>
+
+
+            <!-- 中性菌 -->
+            <if test="bacteroidesStercoris!=null">
+                bacteroides_stercoris,
+            </if>
+            <if test="escherichiaColi!=null">
+                escherichia_coli,
+            </if>
+            <if test="staphylococcusAureus!=null">
+                staphylococcus_aureus,
+            </if>
+
+
+            <if test="enterococcusFaecium!=null">
+                enterococcus_faecium,
+            </if>
+            <if test="enterococcusFaecalis!=null">
+                enterococcus_faecalis,
+            </if>
+            <if test="veillonellaParvula!=null">
+                veillonella_parvula,
+            </if>
+
+
+            <if test="streptococcusSuis!=null">
+                streptococcus_suis,
+            </if>
+            <if test="streptococcusAnginosus!=null">
+                streptococcus_anginosus,
+            </if>
+            <if test="fusobacteriumNucleatum!=null">
+                fusobacterium_nucleatum,
+            </if>
+
+        </trim>
+    </sql>
+
+    <!-- 判断数据是否为空，不为空填上实体数据做为value -->
+    <sql id="value">
+        <trim suffixOverrides=",">
+            <if test="bacterialId!=null">
+                #{bacterialId},
+            </if>
+            <if test="bacteroidesUniformis!=null">
+                #{bacteroidesUniformis},
+            </if>
+
+            <if test="lactobacillusSalivarius!=null">
+                #{lactobacillusSalivarius},
+            </if>
+            <if test="lactobacillusAcidophilus!=null">
+                #{lactobacillusAcidophilus},
+            </if>
+            <if test="lactobacillusFermentum!=null">
+                #{lactobacillusFermentum},
+            </if>
+            <if test="streptococcusThermophilus!=null">
+                #{streptococcusThermophilus},
+            </if>
+            <if test="lactobacillusHelveticus!=null">
+                #{lactobacillusHelveticus},
+            </if>
+            <if test="faecalibacteriumPrausnitzii!=null">
+                #{faecalibacteriumPrausnitzii},
+            </if>
+            <if test="lactobacillusJohnsonii!=null">
+                #{lactobacillusJohnsonii},
+            </if>
+            <if test="lactobacillusCasei!=null">
+                #{lactobacillusCasei},
+            </if>
+            <if test="roseburiaInulinivorans!=null">
+                #{roseburiaInulinivorans},
+            </if>
+            <if test="lactococcusLactis!=null">
+                #{lactococcusLactis},
+            </if>
+            <if test="lactobacillusReuteri!=null">
+                #{lactobacillusReuteri},
+            </if>
+            <if test="clostridiumButyricum!=null">
+                #{clostridiumButyricum},
+            </if>
+            <if test="bifidobacteriumAdolescentis!=null">
+                #{bifidobacteriumAdolescentis},
+            </if>
+            <if test="bifidobacteriumBifidum!=null">
+                #{bifidobacteriumBifidum},
+            </if>
+            <if test="bifidobacteriumAngulatum!=null">
+                #{bifidobacteriumAngulatum},
+            </if>
+            <!-- 有害菌 -->
+
+            <if test="salmonellaEnterica!=null">
+                #{salmonellaEnterica},
+            </if>
+            <if test="campylobacterJejuni!=null">
+                #{campylobacterJejuni},
+            </if>
+            <if test="clostridiumPerfringens!=null">
+                #{clostridiumPerfringens},
+            </if>
+
+
+            <if test="klebsiellaPneumoniae!=null">
+                #{klebsiellaPneumoniae},
+            </if>
+            <if test="bacteroidesFragilis!=null">
+                #{bacteroidesFragilis},
+            </if>
+            <if test="enterobacterAerogenes!=null">
+                #{enterobacterAerogenes},
+            </if>
+
+
+
+            <!-- 中性菌 -->
+
+            <if test="bacteroidesStercoris!=null">
+                #{bacteroidesStercoris},
+            </if>
+            <if test="escherichiaColi!=null">
+                #{escherichiaColi},
+            </if>
+            <if test="staphylococcusAureus!=null">
+                #{staphylococcusAureus},
+            </if>
+
+
+            <if test="enterococcusFaecium!=null">
+                #{enterococcusFaecium},
+            </if>
+            <if test="enterococcusFaecalis!=null">
+                #{enterococcusFaecalis},
+            </if>
+            <if test="veillonellaParvula!=null">
+                #{veillonellaParvula},
+            </if>
+
+
+            <if test="streptococcusSuis!=null">
+                #{streptococcusSuis},
+            </if>
+            <if test="streptococcusAnginosus!=null">
+                #{streptococcusAnginosus},
+            </if>
+            <if test="fusobacteriumNucleatum!=null">
+                #{fusobacteriumNucleatum},
+            </if>
+
+
+        </trim>
+    </sql>
+
+    <!-- <include refid="key"/>和<include refid="value"/>表示引用上面定义的sql片段 -->
+    <insert id="addBacterialReport" parameterType="com.report.common.pojo.BacterialReport" useGeneratedKeys="true" keyProperty="bacterialId" keyColumn="bacterial_id">
+        insert into t_xcs_bacterial_report(<include refid="key"/>) values(<include refid="value"/>)
+    </insert>
+
+</mapper>

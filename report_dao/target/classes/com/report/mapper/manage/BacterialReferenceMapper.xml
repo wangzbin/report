@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.report.mapper.manage.BacterialReferenceMapper">
+
+	<select	id="selectBacterialReference" resultType="BacterialReference" >
+		SELECT quartile_one,quartile_three,bacterial_name FROM t_xcs_bacterial_reference WHERE 1=1;
+	</select>
+</mapper>

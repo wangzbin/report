@@ -1,0 +1,71 @@
+GET http://localhost:8080/frontend/getUserCodeUrl
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+###
+
+GET http://localhost:8080/frontend/getUserCodeUrl
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+###
+
+POST http://localhost:8080/frontend/getUserCodeUrl
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+###
+
+GET http://localhost:8080/frontend/getUserCodeUrl
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+###
+
+GET http://localhost:8080/frontend/getUserCodeUrl
+Accept: */*
+Cache-Control: application/json
+Content-Type: application/json
+
+###
+
+GET http://localhost:8080/frontend/getUserCodeUrl
+Accept: */*
+Cache-Control: application/json
+
+###
+
+GET http://localhost:8080/frontend/getUserCodeUrl
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/frontend/getUserCodeUrl
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:8080/frontend/getUserCodeUrl
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/frontend/getUserCodeUrl
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/frontend/getUserCodeUrl
+Accept: */*
+Cache-Control: no-cache
+
+###
+

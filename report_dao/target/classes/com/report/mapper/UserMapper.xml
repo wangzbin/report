@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.report.mapper.UserMapper">
+	<update id="updateByOpenid" parameterType = "com.report.common.pojo.User">
+		UPDATE t_xcs_user SET subscribe = #{subscribe} WHERE open_id = #{openId}
+	</update>
+
+	<update id="updatePhoneByOpenId" parameterType = "com.report.common.pojo.User">
+		UPDATE t_xcs_user SET user_phone = #{userPhone},user_name = #{userName} WHERE open_id = #{openId}
+	</update>
+	<update id="updateUserPwdByOpenId" parameterType = "com.report.common.pojo.User">
+		UPDATE t_xcs_user SET user_pwd = #{userPwd} WHERE open_id = #{openId}
+	</update>
+	<select id="selectByOpenid" parameterType = "String" resultType="com.report.common.pojo.User" >
+		SELECT * FROM t_xcs_user WHERE open_id = #{openId}
+	</select>
+
+	<insert id="insertUser" parameterType="User">
+		INSERT INTO t_xcs_user (user_id,user_phone,user_name,user_pwd,
+		user_real_name,user_sex,user_sample_date,
+		open_id,public_id,nick_name,subscribe,
+		country,province,city,create_date,headimg_url,
+		union_id,un_subscribe_time,user_national,
+		user_height,user_weight,user_bmi,
+		user_identity_card,user_wechat_number,
+		user_age,user_type_id)
+		VALUES (#{userId},#{userPhone},#{userPwd},#{userName},#{userRealName},#{userSex},#{userSampleDate},#{openId},#{publicId},#{nickName},#{subscribe},#{country},#{province},#{city},#{createDate},#{headimgUrl},#{unionId},#{unSubscribeTime},#{userNational},#{userHeight},#{userWeight},#{userBmi},#{userIdentityCard},#{userWechatNumber},#{userAge},#{userTypeId})
+
+	</insert>
+	<select id="selectByUserId" parameterType = "integer" resultType="com.report.common.pojo.User" >
+		SELECT * FROM t_xcs_user WHERE user_id = #{userId}
+	</select>
+
+</mapper>

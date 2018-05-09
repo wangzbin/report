@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.report.mapper.UserMapper">
+
+	<resultMap id="UserMap" type="com.report.common.pojo.User">
+		<id column="user_id" jdbcType="INTEGER" property="userId" />
+		<result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+		<result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
+		<result column="user_name" jdbcType="VARCHAR" property="userName" />
+		<result column="user_real_name" jdbcType="VARCHAR" property="userRealName" />
+		<result column="user_sex" jdbcType="INTEGER" property="userSex" />
+		<result column="user_sample_date" jdbcType="TIMESTAMP" property="userSampleDate" />
+		<result column="open_id" jdbcType="VARCHAR" property="openId" />
+		<result column="public_id" jdbcType="VARCHAR" property="publicId" />
+		<result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+		<result column="subscribe" jdbcType="INTEGER" property="subscribe" />
+		<result column="country" jdbcType="VARCHAR" property="country" />
+		<result column="province" jdbcType="VARCHAR" property="province" />
+		<result column="city" jdbcType="VARCHAR" property="city" />
+		<result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+		<result column="headimg_url" jdbcType="VARCHAR" property="headimgUrl" />
+		<result column="union_id" jdbcType="VARCHAR" property="unionId" />
+		<result column="un_subscribe_time" jdbcType="TIMESTAMP" property="unSubscribeTime" />
+		<result column="user_national" jdbcType="VARCHAR" property="userNational" />
+		<result column="user_height" jdbcType="INTEGER" property="userHeight" />
+		<result column="user_weight" jdbcType="INTEGER" property="userWeight" />
+		<result column="user_bmi" jdbcType="DECIMAL" property="userBmi" />
+		<result column="user_identity_card" jdbcType="VARCHAR" property="userIdentityCard" />
+		<result column="user_wechat_number" jdbcType="VARCHAR" property="userWechatNumber" />
+		<result column="user_age" jdbcType="TINYINT" property="userAge" />
+
+		<!-- 级联查询-->
+		<association property="userType"  column="user_type_id" javaType="com.report.common.pojo.UserType"  resultMap="com.report.mapper.manage.UserTypeMapper.UserTypeResultMap"/>
+
+	</resultMap>
+
+	<update id="updateByOpenid" parameterType = "com.report.common.pojo.User">
+		UPDATE t_xcs_user SET subscribe = #{subscribe} WHERE open_id = #{openId}
+	</update>
+
+	<update id="updatePhoneByOpenId" parameterType = "com.report.common.pojo.User">
+		UPDATE t_xcs_user SET user_phone = #{userPhone},user_name = #{userName} WHERE open_id = #{openId}
+	</update>
+	<update id="updateUserPwdByOpenId" parameterType = "com.report.common.pojo.User">
+		UPDATE t_xcs_user SET user_pwd = #{userPwd} WHERE open_id = #{openId}
+	</update>
+	<select id="selectByOpenid" parameterType = "String" resultType="com.report.common.pojo.User" >
+		SELECT * FROM t_xcs_user WHERE open_id = #{openId}
+	</select>
+
+	<insert id="insertUser" parameterType="User">
+		INSERT INTO t_xcs_user (user_id,user_phone,user_name,user_pwd,
+		user_real_name,user_sex,user_sample_date,
+		open_id,public_id,nick_name,subscribe,
+		country,province,city,create_date,headimg_url,
+		union_id,un_subscribe_time,user_national,
+		user_height,user_weight,user_bmi,
+		user_identity_card,user_wechat_number,
+		user_age,user_type_id)
+		VALUES (#{userId},#{userPhone},#{userPwd},#{userName},#{userRealName},#{userSex},#{userSampleDate},#{openId},#{publicId},#{nickName},#{subscribe},#{country},#{province},#{city},#{createDate},#{headimgUrl},#{unionId},#{unSubscribeTime},#{userNational},#{userHeight},#{userWeight},#{userBmi},#{userIdentityCard},#{userWechatNumber},#{userAge},#{userTypeId})
+
+	</insert>
+	<select id="selectByUserId" parameterType = "integer" resultType="com.report.common.pojo.User" >
+		SELECT * FROM t_xcs_user WHERE user_id = #{userId}
+	</select>
+
+
+	<select id="selectUserByPaging" parameterType = "user" resultMap="UserMap" >
+		SELECT u.user_id,u.user_name,u.nick_name,ut.user_type_name,u.user_phone,u.user_sex,u.user_age
+		FROM t_xcs_user u  LEFT JOIN t_xcs_user_type ut
+		ON u.user_type_id = ut.user_type_id
+	</select>
+
+</mapper>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.report.mapper.manage.PylumResultMapper">
+  <resultMap id="BaseResultMap" type="com.report.common.pojo.PylumResult">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="tube_number" jdbcType="VARCHAR" property="tubeNumber" />
+    <result column="spirochaetes" jdbcType="DOUBLE" property="spirochaetes" />
+    <result column="verrucomicrobia" jdbcType="DOUBLE" property="verrucomicrobia" />
+    <result column="lentisphaerae" jdbcType="DOUBLE" property="lentisphaerae" />
+    <result column="chlamydiae" jdbcType="DOUBLE" property="chlamydiae" />
+    <result column="deinococcus_thermus" jdbcType="DOUBLE" property="deinococcusThermus" />
+    <result column="proteobacteria" jdbcType="DOUBLE" property="proteobacteria" />
+    <result column="firmicutes" jdbcType="DOUBLE" property="firmicutes" />
+    <result column="nitrospirae" jdbcType="DOUBLE" property="nitrospirae" />
+    <result column="bacteroidetes" jdbcType="DOUBLE" property="bacteroidetes" />
+    <result column="chloroflexi" jdbcType="DOUBLE" property="chloroflexi" />
+    <result column="actinobacteria" jdbcType="DOUBLE" property="actinobacteria" />
+    <result column="tenericutes" jdbcType="DOUBLE" property="tenericutes" />
+    <result column="synergistetes" jdbcType="DOUBLE" property="synergistetes" />
+    <result column="fusobacteria" jdbcType="DOUBLE" property="fusobacteria" />
+    <result column="cyanobacteria" jdbcType="DOUBLE" property="cyanobacteria" />
+    <result column="fibrobacteres" jdbcType="DOUBLE" property="fibrobacteres" />
+    <result column="euryarchaeota" jdbcType="DOUBLE" property="euryarchaeota" />
+    <result column="unknown" jdbcType="DOUBLE" property="unknown" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, tube_number, spirochaetes, verrucomicrobia, lentisphaerae, chlamydiae, deinococcus_thermus, 
+    proteobacteria, firmicutes, nitrospirae, bacteroidetes, chloroflexi, actinobacteria, 
+    tenericutes, synergistetes, fusobacteria, cyanobacteria, fibrobacteres, euryarchaeota, 
+    unknown
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_xcs_pylum_result
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_xcs_pylum_result
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.report.common.pojo.PylumResult">
+    insert into t_xcs_pylum_result (id, tube_number, spirochaetes, 
+      verrucomicrobia, lentisphaerae, chlamydiae, 
+      deinococcus_thermus, proteobacteria, firmicutes, 
+      nitrospirae, bacteroidetes, chloroflexi, 
+      actinobacteria, tenericutes, synergistetes, 
+      fusobacteria, cyanobacteria, fibrobacteres, 
+      euryarchaeota, unknown)
+    values (#{id,jdbcType=INTEGER}, #{tubeNumber,jdbcType=VARCHAR}, #{spirochaetes,jdbcType=DOUBLE}, 
+      #{verrucomicrobia,jdbcType=DOUBLE}, #{lentisphaerae,jdbcType=DOUBLE}, #{chlamydiae,jdbcType=DOUBLE}, 
+      #{deinococcusThermus,jdbcType=DOUBLE}, #{proteobacteria,jdbcType=DOUBLE}, #{firmicutes,jdbcType=DOUBLE}, 
+      #{nitrospirae,jdbcType=DOUBLE}, #{bacteroidetes,jdbcType=DOUBLE}, #{chloroflexi,jdbcType=DOUBLE}, 
+      #{actinobacteria,jdbcType=DOUBLE}, #{tenericutes,jdbcType=DOUBLE}, #{synergistetes,jdbcType=DOUBLE}, 
+      #{fusobacteria,jdbcType=DOUBLE}, #{cyanobacteria,jdbcType=DOUBLE}, #{fibrobacteres,jdbcType=DOUBLE}, 
+      #{euryarchaeota,jdbcType=DOUBLE}, #{unknown,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.report.common.pojo.PylumResult">
+    insert into t_xcs_pylum_result
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tubeNumber != null">
+        tube_number,
+      </if>
+      <if test="spirochaetes != null">
+        spirochaetes,
+      </if>
+      <if test="verrucomicrobia != null">
+        verrucomicrobia,
+      </if>
+      <if test="lentisphaerae != null">
+        lentisphaerae,
+      </if>
+      <if test="chlamydiae != null">
+        chlamydiae,
+      </if>
+      <if test="deinococcusThermus != null">
+        deinococcus_thermus,
+      </if>
+      <if test="proteobacteria != null">
+        proteobacteria,
+      </if>
+      <if test="firmicutes != null">
+        firmicutes,
+      </if>
+      <if test="nitrospirae != null">
+        nitrospirae,
+      </if>
+      <if test="bacteroidetes != null">
+        bacteroidetes,
+      </if>
+      <if test="chloroflexi != null">
+        chloroflexi,
+      </if>
+      <if test="actinobacteria != null">
+        actinobacteria,
+      </if>
+      <if test="tenericutes != null">
+        tenericutes,
+      </if>
+      <if test="synergistetes != null">
+        synergistetes,
+      </if>
+      <if test="fusobacteria != null">
+        fusobacteria,
+      </if>
+      <if test="cyanobacteria != null">
+        cyanobacteria,
+      </if>
+      <if test="fibrobacteres != null">
+        fibrobacteres,
+      </if>
+      <if test="euryarchaeota != null">
+        euryarchaeota,
+      </if>
+      <if test="unknown != null">
+        unknown,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tubeNumber != null">
+        #{tubeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="spirochaetes != null">
+        #{spirochaetes,jdbcType=DOUBLE},
+      </if>
+      <if test="verrucomicrobia != null">
+        #{verrucomicrobia,jdbcType=DOUBLE},
+      </if>
+      <if test="lentisphaerae != null">
+        #{lentisphaerae,jdbcType=DOUBLE},
+      </if>
+      <if test="chlamydiae != null">
+        #{chlamydiae,jdbcType=DOUBLE},
+      </if>
+      <if test="deinococcusThermus != null">
+        #{deinococcusThermus,jdbcType=DOUBLE},
+      </if>
+      <if test="proteobacteria != null">
+        #{proteobacteria,jdbcType=DOUBLE},
+      </if>
+      <if test="firmicutes != null">
+        #{firmicutes,jdbcType=DOUBLE},
+      </if>
+      <if test="nitrospirae != null">
+        #{nitrospirae,jdbcType=DOUBLE},
+      </if>
+      <if test="bacteroidetes != null">
+        #{bacteroidetes,jdbcType=DOUBLE},
+      </if>
+      <if test="chloroflexi != null">
+        #{chloroflexi,jdbcType=DOUBLE},
+      </if>
+      <if test="actinobacteria != null">
+        #{actinobacteria,jdbcType=DOUBLE},
+      </if>
+      <if test="tenericutes != null">
+        #{tenericutes,jdbcType=DOUBLE},
+      </if>
+      <if test="synergistetes != null">
+        #{synergistetes,jdbcType=DOUBLE},
+      </if>
+      <if test="fusobacteria != null">
+        #{fusobacteria,jdbcType=DOUBLE},
+      </if>
+      <if test="cyanobacteria != null">
+        #{cyanobacteria,jdbcType=DOUBLE},
+      </if>
+      <if test="fibrobacteres != null">
+        #{fibrobacteres,jdbcType=DOUBLE},
+      </if>
+      <if test="euryarchaeota != null">
+        #{euryarchaeota,jdbcType=DOUBLE},
+      </if>
+      <if test="unknown != null">
+        #{unknown,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.report.common.pojo.PylumResult">
+    update t_xcs_pylum_result
+    <set>
+      <if test="tubeNumber != null">
+        tube_number = #{tubeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="spirochaetes != null">
+        spirochaetes = #{spirochaetes,jdbcType=DOUBLE},
+      </if>
+      <if test="verrucomicrobia != null">
+        verrucomicrobia = #{verrucomicrobia,jdbcType=DOUBLE},
+      </if>
+      <if test="lentisphaerae != null">
+        lentisphaerae = #{lentisphaerae,jdbcType=DOUBLE},
+      </if>
+      <if test="chlamydiae != null">
+        chlamydiae = #{chlamydiae,jdbcType=DOUBLE},
+      </if>
+      <if test="deinococcusThermus != null">
+        deinococcus_thermus = #{deinococcusThermus,jdbcType=DOUBLE},
+      </if>
+      <if test="proteobacteria != null">
+        proteobacteria = #{proteobacteria,jdbcType=DOUBLE},
+      </if>
+      <if test="firmicutes != null">
+        firmicutes = #{firmicutes,jdbcType=DOUBLE},
+      </if>
+      <if test="nitrospirae != null">
+        nitrospirae = #{nitrospirae,jdbcType=DOUBLE},
+      </if>
+      <if test="bacteroidetes != null">
+        bacteroidetes = #{bacteroidetes,jdbcType=DOUBLE},
+      </if>
+      <if test="chloroflexi != null">
+        chloroflexi = #{chloroflexi,jdbcType=DOUBLE},
+      </if>
+      <if test="actinobacteria != null">
+        actinobacteria = #{actinobacteria,jdbcType=DOUBLE},
+      </if>
+      <if test="tenericutes != null">
+        tenericutes = #{tenericutes,jdbcType=DOUBLE},
+      </if>
+      <if test="synergistetes != null">
+        synergistetes = #{synergistetes,jdbcType=DOUBLE},
+      </if>
+      <if test="fusobacteria != null">
+        fusobacteria = #{fusobacteria,jdbcType=DOUBLE},
+      </if>
+      <if test="cyanobacteria != null">
+        cyanobacteria = #{cyanobacteria,jdbcType=DOUBLE},
+      </if>
+      <if test="fibrobacteres != null">
+        fibrobacteres = #{fibrobacteres,jdbcType=DOUBLE},
+      </if>
+      <if test="euryarchaeota != null">
+        euryarchaeota = #{euryarchaeota,jdbcType=DOUBLE},
+      </if>
+      <if test="unknown != null">
+        unknown = #{unknown,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.report.common.pojo.PylumResult">
+    update t_xcs_pylum_result
+    set tube_number = #{tubeNumber,jdbcType=VARCHAR},
+      spirochaetes = #{spirochaetes,jdbcType=DOUBLE},
+      verrucomicrobia = #{verrucomicrobia,jdbcType=DOUBLE},
+      lentisphaerae = #{lentisphaerae,jdbcType=DOUBLE},
+      chlamydiae = #{chlamydiae,jdbcType=DOUBLE},
+      deinococcus_thermus = #{deinococcusThermus,jdbcType=DOUBLE},
+      proteobacteria = #{proteobacteria,jdbcType=DOUBLE},
+      firmicutes = #{firmicutes,jdbcType=DOUBLE},
+      nitrospirae = #{nitrospirae,jdbcType=DOUBLE},
+      bacteroidetes = #{bacteroidetes,jdbcType=DOUBLE},
+      chloroflexi = #{chloroflexi,jdbcType=DOUBLE},
+      actinobacteria = #{actinobacteria,jdbcType=DOUBLE},
+      tenericutes = #{tenericutes,jdbcType=DOUBLE},
+      synergistetes = #{synergistetes,jdbcType=DOUBLE},
+      fusobacteria = #{fusobacteria,jdbcType=DOUBLE},
+      cyanobacteria = #{cyanobacteria,jdbcType=DOUBLE},
+      fibrobacteres = #{fibrobacteres,jdbcType=DOUBLE},
+      euryarchaeota = #{euryarchaeota,jdbcType=DOUBLE},
+      unknown = #{unknown,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.report.mapper.manage.BacterialResultMapper">
+  <resultMap id="BacterialResultResultMap" type="com.report.common.pojo.BacterialResult">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="tube_number" jdbcType="VARCHAR" property="tubeNumber" />
+    <result column="bacteroides_uniformis" jdbcType="TINYINT" property="bacteroidesUniformis" />
+    <result column="lactobacillus_salivarius" jdbcType="TINYINT" property="lactobacillusSalivarius" />
+    <result column="lactobacillus_acidophilus" jdbcType="TINYINT" property="lactobacillusAcidophilus" />
+    <result column="lactobacillus_fermentum" jdbcType="TINYINT" property="lactobacillusFermentum" />
+    <result column="streptococcus_thermophilus" jdbcType="TINYINT" property="streptococcusThermophilus" />
+    <result column="lactobacillus_helveticus" jdbcType="TINYINT" property="lactobacillusHelveticus" />
+    <result column="faecalibacterium_prausnitzii" jdbcType="TINYINT" property="faecalibacteriumPrausnitzii" />
+    <result column="lactobacillus_johnsonii" jdbcType="TINYINT" property="lactobacillusJohnsonii" />
+    <result column="lactobacillus_casei" jdbcType="TINYINT" property="lactobacillusCasei" />
+    <result column="roseburia_inulinivorans" jdbcType="TINYINT" property="roseburiaInulinivorans" />
+    <result column="lactococcus_lactis" jdbcType="TINYINT" property="lactococcusLactis" />
+    <result column="lactobacillus_reuteri" jdbcType="TINYINT" property="lactobacillusReuteri" />
+    <result column="clostridium_butyricum" jdbcType="TINYINT" property="clostridiumButyricum" />
+    <result column="bifidobacterium_adolescentis" jdbcType="TINYINT" property="bifidobacteriumAdolescentis" />
+    <result column="bifidobacterium_bifidum" jdbcType="TINYINT" property="bifidobacteriumBifidum" />
+    <result column="bifidobacterium_angulatum" jdbcType="TINYINT" property="bifidobacteriumAngulatum" />
+    <result column="salmonella_enterica" jdbcType="TINYINT" property="salmonellaEnterica" />
+    <result column="campylobacter_jejuni" jdbcType="TINYINT" property="campylobacterJejuni" />
+    <result column="clostridium_perfringens" jdbcType="TINYINT" property="clostridiumPerfringens" />
+    <result column="klebsiella_pneumoniae" jdbcType="TINYINT" property="klebsiellaPneumoniae" />
+    <result column="bacteroides_fragilis" jdbcType="TINYINT" property="bacteroidesFragilis" />
+    <result column="enterobacter_aerogenes" jdbcType="TINYINT" property="enterobacterAerogenes" />
+    <result column="bacteroides_stercoris" jdbcType="TINYINT" property="bacteroidesStercoris" />
+    <result column="escherichia_coli" jdbcType="TINYINT" property="escherichiaColi" />
+    <result column="staphylococcus_aureus" jdbcType="TINYINT" property="staphylococcusAureus" />
+    <result column="enterococcus_faecium" jdbcType="TINYINT" property="enterococcusFaecium" />
+    <result column="enterococcus_faecalis" jdbcType="TINYINT" property="enterococcusFaecalis" />
+    <result column="veillonella_parvula" jdbcType="TINYINT" property="veillonellaParvula" />
+    <result column="streptococcus_suis" jdbcType="TINYINT" property="streptococcusSuis" />
+    <result column="streptococcus_anginosus" jdbcType="TINYINT" property="streptococcusAnginosus" />
+    <result column="fusobacterium_nucleatum" jdbcType="TINYINT" property="fusobacteriumNucleatum" />
+  </resultMap>
+  <insert id="insert" parameterType="com.report.common.pojo.BacterialResult">
+    insert into t_xcs_bacterial_result (id, tube_number, bacteroides_uniformis, 
+      lactobacillus_salivarius, lactobacillus_acidophilus, 
+      lactobacillus_fermentum, streptococcus_thermophilus, 
+      lactobacillus_helveticus, faecalibacterium_prausnitzii, 
+      lactobacillus_johnsonii, lactobacillus_casei, 
+      roseburia_inulinivorans, lactococcus_lactis, 
+      lactobacillus_reuteri, clostridium_butyricum, 
+      bifidobacterium_adolescentis, bifidobacterium_bifidum, 
+      bifidobacterium_angulatum, salmonella_enterica, 
+      campylobacter_jejuni, clostridium_perfringens, 
+      klebsiella_pneumoniae, bacteroides_fragilis, 
+      enterobacter_aerogenes, bacteroides_stercoris, 
+      escherichia_coli, staphylococcus_aureus, 
+      enterococcus_faecium, enterococcus_faecalis, 
+      veillonella_parvula, streptococcus_suis, 
+      streptococcus_anginosus, fusobacterium_nucleatum
+      )
+    values (#{id,jdbcType=INTEGER}, #{tubeNumber,jdbcType=VARCHAR}, #{bacteroidesUniformis,jdbcType=TINYINT}, 
+      #{lactobacillusSalivarius,jdbcType=TINYINT}, #{lactobacillusAcidophilus,jdbcType=TINYINT}, 
+      #{lactobacillusFermentum,jdbcType=TINYINT}, #{streptococcusThermophilus,jdbcType=TINYINT}, 
+      #{lactobacillusHelveticus,jdbcType=TINYINT}, #{faecalibacteriumPrausnitzii,jdbcType=TINYINT}, 
+      #{lactobacillusJohnsonii,jdbcType=TINYINT}, #{lactobacillusCasei,jdbcType=TINYINT}, 
+      #{roseburiaInulinivorans,jdbcType=TINYINT}, #{lactococcusLactis,jdbcType=TINYINT}, 
+      #{lactobacillusReuteri,jdbcType=TINYINT}, #{clostridiumButyricum,jdbcType=TINYINT}, 
+      #{bifidobacteriumAdolescentis,jdbcType=TINYINT}, #{bifidobacteriumBifidum,jdbcType=TINYINT}, 
+      #{bifidobacteriumAngulatum,jdbcType=TINYINT}, #{salmonellaEnterica,jdbcType=TINYINT}, 
+      #{campylobacterJejuni,jdbcType=TINYINT}, #{clostridiumPerfringens,jdbcType=TINYINT}, 
+      #{klebsiellaPneumoniae,jdbcType=TINYINT}, #{bacteroidesFragilis,jdbcType=TINYINT}, 
+      #{enterobacterAerogenes,jdbcType=TINYINT}, #{bacteroidesStercoris,jdbcType=TINYINT}, 
+      #{escherichiaColi,jdbcType=TINYINT}, #{staphylococcusAureus,jdbcType=TINYINT}, 
+      #{enterococcusFaecium,jdbcType=TINYINT}, #{enterococcusFaecalis,jdbcType=TINYINT}, 
+      #{veillonellaParvula,jdbcType=TINYINT}, #{streptococcusSuis,jdbcType=TINYINT}, 
+      #{streptococcusAnginosus,jdbcType=TINYINT}, #{fusobacteriumNucleatum,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.report.common.pojo.BacterialResult">
+    insert into t_xcs_bacterial_result
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tubeNumber != null">
+        tube_number,
+      </if>
+      <if test="bacteroidesUniformis != null">
+        bacteroides_uniformis,
+      </if>
+      <if test="lactobacillusSalivarius != null">
+        lactobacillus_salivarius,
+      </if>
+      <if test="lactobacillusAcidophilus != null">
+        lactobacillus_acidophilus,
+      </if>
+      <if test="lactobacillusFermentum != null">
+        lactobacillus_fermentum,
+      </if>
+      <if test="streptococcusThermophilus != null">
+        streptococcus_thermophilus,
+      </if>
+      <if test="lactobacillusHelveticus != null">
+        lactobacillus_helveticus,
+      </if>
+      <if test="faecalibacteriumPrausnitzii != null">
+        faecalibacterium_prausnitzii,
+      </if>
+      <if test="lactobacillusJohnsonii != null">
+        lactobacillus_johnsonii,
+      </if>
+      <if test="lactobacillusCasei != null">
+        lactobacillus_casei,
+      </if>
+      <if test="roseburiaInulinivorans != null">
+        roseburia_inulinivorans,
+      </if>
+      <if test="lactococcusLactis != null">
+        lactococcus_lactis,
+      </if>
+      <if test="lactobacillusReuteri != null">
+        lactobacillus_reuteri,
+      </if>
+      <if test="clostridiumButyricum != null">
+        clostridium_butyricum,
+      </if>
+      <if test="bifidobacteriumAdolescentis != null">
+        bifidobacterium_adolescentis,
+      </if>
+      <if test="bifidobacteriumBifidum != null">
+        bifidobacterium_bifidum,
+      </if>
+      <if test="bifidobacteriumAngulatum != null">
+        bifidobacterium_angulatum,
+      </if>
+      <if test="salmonellaEnterica != null">
+        salmonella_enterica,
+      </if>
+      <if test="campylobacterJejuni != null">
+        campylobacter_jejuni,
+      </if>
+      <if test="clostridiumPerfringens != null">
+        clostridium_perfringens,
+      </if>
+      <if test="klebsiellaPneumoniae != null">
+        klebsiella_pneumoniae,
+      </if>
+      <if test="bacteroidesFragilis != null">
+        bacteroides_fragilis,
+      </if>
+      <if test="enterobacterAerogenes != null">
+        enterobacter_aerogenes,
+      </if>
+      <if test="bacteroidesStercoris != null">
+        bacteroides_stercoris,
+      </if>
+      <if test="escherichiaColi != null">
+        escherichia_coli,
+      </if>
+      <if test="staphylococcusAureus != null">
+        staphylococcus_aureus,
+      </if>
+      <if test="enterococcusFaecium != null">
+        enterococcus_faecium,
+      </if>
+      <if test="enterococcusFaecalis != null">
+        enterococcus_faecalis,
+      </if>
+      <if test="veillonellaParvula != null">
+        veillonella_parvula,
+      </if>
+      <if test="streptococcusSuis != null">
+        streptococcus_suis,
+      </if>
+      <if test="streptococcusAnginosus != null">
+        streptococcus_anginosus,
+      </if>
+      <if test="fusobacteriumNucleatum != null">
+        fusobacterium_nucleatum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tubeNumber != null">
+        #{tubeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bacteroidesUniformis != null">
+        #{bacteroidesUniformis,jdbcType=TINYINT},
+      </if>
+      <if test="lactobacillusSalivarius != null">
+        #{lactobacillusSalivarius,jdbcType=TINYINT},
+      </if>
+      <if test="lactobacillusAcidophilus != null">
+        #{lactobacillusAcidophilus,jdbcType=TINYINT},
+      </if>
+      <if test="lactobacillusFermentum != null">
+        #{lactobacillusFermentum,jdbcType=TINYINT},
+      </if>
+      <if test="streptococcusThermophilus != null">
+        #{streptococcusThermophilus,jdbcType=TINYINT},
+      </if>
+      <if test="lactobacillusHelveticus != null">
+        #{lactobacillusHelveticus,jdbcType=TINYINT},
+      </if>
+      <if test="faecalibacteriumPrausnitzii != null">
+        #{faecalibacteriumPrausnitzii,jdbcType=TINYINT},
+      </if>
+      <if test="lactobacillusJohnsonii != null">
+        #{lactobacillusJohnsonii,jdbcType=TINYINT},
+      </if>
+      <if test="lactobacillusCasei != null">
+        #{lactobacillusCasei,jdbcType=TINYINT},
+      </if>
+      <if test="roseburiaInulinivorans != null">
+        #{roseburiaInulinivorans,jdbcType=TINYINT},
+      </if>
+      <if test="lactococcusLactis != null">
+        #{lactococcusLactis,jdbcType=TINYINT},
+      </if>
+      <if test="lactobacillusReuteri != null">
+        #{lactobacillusReuteri,jdbcType=TINYINT},
+      </if>
+      <if test="clostridiumButyricum != null">
+        #{clostridiumButyricum,jdbcType=TINYINT},
+      </if>
+      <if test="bifidobacteriumAdolescentis != null">
+        #{bifidobacteriumAdolescentis,jdbcType=TINYINT},
+      </if>
+      <if test="bifidobacteriumBifidum != null">
+        #{bifidobacteriumBifidum,jdbcType=TINYINT},
+      </if>
+      <if test="bifidobacteriumAngulatum != null">
+        #{bifidobacteriumAngulatum,jdbcType=TINYINT},
+      </if>
+      <if test="salmonellaEnterica != null">
+        #{salmonellaEnterica,jdbcType=TINYINT},
+      </if>
+      <if test="campylobacterJejuni != null">
+        #{campylobacterJejuni,jdbcType=TINYINT},
+      </if>
+      <if test="clostridiumPerfringens != null">
+        #{clostridiumPerfringens,jdbcType=TINYINT},
+      </if>
+      <if test="klebsiellaPneumoniae != null">
+        #{klebsiellaPneumoniae,jdbcType=TINYINT},
+      </if>
+      <if test="bacteroidesFragilis != null">
+        #{bacteroidesFragilis,jdbcType=TINYINT},
+      </if>
+      <if test="enterobacterAerogenes != null">
+        #{enterobacterAerogenes,jdbcType=TINYINT},
+      </if>
+      <if test="bacteroidesStercoris != null">
+        #{bacteroidesStercoris,jdbcType=TINYINT},
+      </if>
+      <if test="escherichiaColi != null">
+        #{escherichiaColi,jdbcType=TINYINT},
+      </if>
+      <if test="staphylococcusAureus != null">
+        #{staphylococcusAureus,jdbcType=TINYINT},
+      </if>
+      <if test="enterococcusFaecium != null">
+        #{enterococcusFaecium,jdbcType=TINYINT},
+      </if>
+      <if test="enterococcusFaecalis != null">
+        #{enterococcusFaecalis,jdbcType=TINYINT},
+      </if>
+      <if test="veillonellaParvula != null">
+        #{veillonellaParvula,jdbcType=TINYINT},
+      </if>
+      <if test="streptococcusSuis != null">
+        #{streptococcusSuis,jdbcType=TINYINT},
+      </if>
+      <if test="streptococcusAnginosus != null">
+        #{streptococcusAnginosus,jdbcType=TINYINT},
+      </if>
+      <if test="fusobacteriumNucleatum != null">
+        #{fusobacteriumNucleatum,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,55 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+
+    <import resource="classpath:spring/applicationContext-dao.xml"/>
+    <!-- 事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<!-- 数据源 -->
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 通知 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!--<tx:method name="add*" propagation="REQUIRED" isolation="DEFAULT"
+                       rollback-for="java.lang.Exception" />
+            <tx:method name="save*" propagation="REQUIRED" isolation="DEFAULT"
+                       rollback-for="java.lang.Exception" />
+            <tx:method name="insert*" propagation="REQUIRED" isolation="DEFAULT"
+                       rollback-for="java.lang.Exception" />
+            <tx:method name="update*" propagation="REQUIRED" isolation="DEFAULT"
+                       rollback-for="java.lang.Exception" />
+            <tx:method name="modify*" propagation="REQUIRED" isolation="DEFAULT"
+                       rollback-for="java.lang.Exception" />
+            <tx:method name="delete*" propagation="REQUIRED" isolation="DEFAULT"
+                       rollback-for="java.lang.Exception" />
+            &lt;!&ndash; 查询方法 &ndash;&gt;
+            <tx:method name="query*" read-only="true" />
+            <tx:method name="select*" read-only="true" />\\
+\           <tx:method name="find*" read-only="true" />-->
+            <!-- 传播行为 -->
+            <tx:method name="save*" propagation="REQUIRED" />
+            <tx:method name="insert*" propagation="REQUIRED"  />
+            <tx:method name="add*" propagation="REQUIRED" />
+            <tx:method name="create*" propagation="REQUIRED" />
+            <tx:method name="delete*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED" />
+
+            <tx:method name="find*" propagation="SUPPORTS" read-only="true" />
+            <tx:method name="select*" propagation="SUPPORTS" read-only="true" />
+            <tx:method name="get*" propagation="SUPPORTS" read-only="true" />
+        </tx:attributes>
+	</tx:advice>
+	
+	<!-- 声明式事务AOP配置 -->
+    <aop:config>
+        <!--切入点-->
+        <aop:pointcut expression="execution(* com.report.service..*.*(..))" id="tranpointcut" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="tranpointcut" />
+    </aop:config>
+	
+	
+</beans>

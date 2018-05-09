@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.report.mapper.manage.SamplingTubeMapper">
+  <resultMap id="samplingTubeResultMap" type="com.report.common.pojo.SamplingTube">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="tube_number" jdbcType="VARCHAR" property="tubeNumber" />
+    <result column="tube_binding" jdbcType="BIGINT" property="tubeBinding" />
+    <result column="tube_state" jdbcType="BIGINT" property="tubeState" />
+    <result column="creater" jdbcType="VARCHAR" property="creater" />
+    <result column="creater_time" jdbcType="INTEGER" property="createrTime" />
+
+    <association property="user" javaType="com.report.common.pojo.User">
+      <id column="user_id"  property="userId" />
+      <result column="user_phone"  property="userPhone" />
+      <result column="user_pwd"  property="userPwd" />
+      <result column="user_name"  property="userName" />
+      <result column="user_real_name"  property="userRealName" />
+      <result column="user_sex"  property="userSex" />
+      <result column="user_sample_date"  property="userSampleDate" />
+      <result column="open_id"  property="openId" />
+      <result column="public_id"  property="publicId" />
+      <result column="nick_name"  property="nickName" />
+      <result column="subscribe"  property="subscribe" />
+      <result column="country"  property="country" />
+      <result column="province"  property="province" />
+      <result column="city"  property="city" />
+      <result column="create_date"  property="createDate" />
+      <result column="headimg_url"  property="headimgUrl" />
+      <result column="union_id"  property="unionId" />
+      <result column="un_subscribe_time"  property="unSubscribeTime" />
+      <result column="user_national"  property="userNational" />
+      <result column="user_height"  property="userHeight" />
+      <result column="user_weight"  property="userWeight" />
+      <result column="user_bmi" property="userBmi" />
+      <result column="user_identity_card"  property="userIdentityCard" />
+      <result column="user_wechat_number"  property="userWechatNumber" />
+      <result column="user_age" property="userAge" />
+      <result column="user_type_id"  property="userTypeId" />
+    </association>
+  </resultMap>
+  <insert id="insert" parameterType="com.report.common.pojo.SamplingTube">
+    insert into t_xcs_sampling_tube (id, tube_number, tube_binding, 
+      tube_user_id, tube_state, creater, 
+      creater_time, tube_report_id)
+    values (#{id,jdbcType=INTEGER}, #{tubeNumber,jdbcType=VARCHAR}, #{tubeBinding,jdbcType=BIGINT}, 
+      #{tubeUserId,jdbcType=INTEGER}, #{tubeState,jdbcType=BIGINT}, #{creater,jdbcType=VARCHAR}, 
+      #{createrTime,jdbcType=INTEGER}, #{tubeReportId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.report.common.pojo.SamplingTube">
+    insert into t_xcs_sampling_tube
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tubeNumber != null">
+        tube_number,
+      </if>
+      <if test="tubeBinding != null">
+        tube_binding,
+      </if>
+      <if test="tubeUserId != null">
+        tube_user_id,
+      </if>
+      <if test="tubeState != null">
+        tube_state,
+      </if>
+      <if test="creater != null">
+        creater,
+      </if>
+      <if test="createrTime != null">
+        creater_time,
+      </if>
+      <if test="tubeReportId != null">
+        tube_report_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tubeNumber != null">
+        #{tubeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tubeBinding != null">
+        #{tubeBinding,jdbcType=BIGINT},
+      </if>
+      <if test="tubeUserId != null">
+        #{tubeUserId,jdbcType=INTEGER},
+      </if>
+      <if test="tubeState != null">
+        #{tubeState,jdbcType=BIGINT},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createrTime != null">
+        #{createrTime,jdbcType=INTEGER},
+      </if>
+      <if test="tubeReportId != null">
+        #{tubeReportId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="deleteTube" parameterType = "integer">
+    UPDATE t_xcs_sampling_tube SET tube_state = 2 WHERE id = #{id}
+  </update>
+
+  <select id="selectSamplingTubeByPaging" parameterType = "com.report.common.pojo.SamplingTube" resultMap="samplingTubeResultMap" >
+    select u.user_phone,st.* from t_xcs_user u,t_xcs_sampling_tube st
+    <where>
+       u.user_id = st.tube_user_id AND st.tube_state NOT IN (2)
+      <if test="tubeNumber!=null and tubeNumber!=''">
+        and st.tube_number like concat('%',#{tubeNumber},'%')
+      </if>
+      <if test="tubeState!=null">
+        and st.tube_state = #{tubeState}
+      </if>
+      <if test="user!=null">
+        and u.user_phone = #{user.userPhone}
+      </if>
+    </where>
+  </select>
+  <!--查询用户的采样管-->
+  <select id="selectSamplingTubeList" resultMap="SamplingTube">
+    SELECT tube_number FROM  t_xcs_sampling_tube a WHERE a.tube_user_id = #{user_id}
+  </select>
+
+</mapper>
